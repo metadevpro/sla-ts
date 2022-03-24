@@ -2,6 +2,7 @@
 
 TypeScript library to help building SLA4API compliant API contracts.
 
+[![Node.js CI](https://github.com/metadevpro/sla-ts/actions/workflows/node.js.yml/badge.svg)](https://github.com/metadevpro/sla-ts/actions/workflows/node.js.yml)
 
 ## Versions & Changelog
 
