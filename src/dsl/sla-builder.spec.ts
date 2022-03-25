@@ -66,7 +66,7 @@ plans: {}
     expect(Object.keys(doc.plans || {}).length).to.eql(1);
     expect(doc.plans?.['planBasic']).to.eql({});
   });
-  it('should add a a quota', () => {
+  it('should add a quota', () => {
     const sut = SlaBuilder.createSlaDocument('sample1')
       .addPlan('pro', {})
       .addQuota('basic', '/admin/users', 'put', 'm1', { max: 3, period: 'day' });
@@ -81,7 +81,7 @@ plans: {}
       period: 'day'
     });
   });
-  it('should add a a rate', () => {
+  it('should add a rate', () => {
     const sut = SlaBuilder.createSlaDocument('sample1').addRate(
       'basic',
       '/admin/users',
@@ -89,6 +89,35 @@ plans: {}
       'm1',
       { max: 3, period: 'day' }
     );
+    const doc = sut.getSla();
+
+    expect(Object.keys(doc.plans || {}).length).to.eql(1);
+    expect(doc.plans?.['basic']).to.not.null;
+    expect(doc.plans?.['basic'].rates?.['/admin/users']).to.not.null;
+    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']).to.not.null;
+    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']['m1']).to.eql({
+      max: 3,
+      period: 'day'
+    });
+  });
+  it('should create a sample SLA', () => {
+    const metricDef = {
+      type: 'integer',
+      format: 'int64',
+      description: 'abc'
+    } as MetricObject;
+    const sut = SlaBuilder.createSlaDocument('sample2')
+      .addMetricDefinition('m1', metricDef)
+      .addMetricReference('m2', 'https://acme.com/metrics/m2')
+      .addPlan('basic', {})
+      .addPlan('pro', {})
+      .addRate('basic', '/admin/users', 'put', 'm1', { max: 3, period: 'day' })
+      .addRate('basic', '/admin/users', 'get', 'm1', { max: 100, period: 'day' })
+      .addQuota('basic', '/rooms', 'get', 'm2', { max: 10, period: 'day' })
+      .addQuota('basic', '/rooms', 'post', 'm2', { max: 5, period: 'day' })
+      .addRate('pro', '/admin/users', 'put', 'm1', { max: 53, period: 'day' })
+      .addQuota('pro', '/rooms', 'get', 'm2', { max: 50, period: 'day' });
+
     const doc = sut.getSla();
 
     expect(Object.keys(doc.plans || {}).length).to.eql(1);
