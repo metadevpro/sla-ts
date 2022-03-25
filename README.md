@@ -1,6 +1,7 @@
 # SLA-TS
 
 TypeScript library to help building SLA4API compliant API contracts.
+Provides a model compliant with the schema, and a internal DSL using the builder pattern with capabilities to generate the JSON and YAML version of the SLA contract. 
 
 [![Node.js CI](https://github.com/metadevpro/sla-ts/actions/workflows/node.js.yml/badge.svg)](https://github.com/metadevpro/sla-ts/actions/workflows/node.js.yml)
 
