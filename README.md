@@ -7,6 +7,18 @@ Provides a model compliant with the schema, and a internal DSL using the builder
 
 Conforms to the specification at [SLA4API 1.0.0 Draft](https://github.com/isa-group/SLA4OAI-Specification/blob/main/versions/1.0.0-Draft.md)
 
+## Install
+
+```bash
+npm i sla-ts --save
+```
+
+## Test
+
+```bash
+npm test
+```
+
 ## Versions & Changelog
 
 See [changelog](changelog.md).
