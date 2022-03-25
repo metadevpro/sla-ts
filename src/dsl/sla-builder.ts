@@ -51,7 +51,7 @@ export class SlaBuilder {
   }
   addRate(planName: string, path: string, verb: string, metric: string, limit: sla.LimitObject) {
     const plan = ensurePlan(this.doc, planName);
-    const ro = ensureRatePathPath(plan, path);
+    const ro = ensureRatePath(plan, path);
     addLimit(ro, verb, metric, limit);
     return this;
   }
@@ -88,8 +88,8 @@ const ensureQuotaPath = (plan: PlanObject, path: string): sla.PathObject => {
 };
 
 /** Ensuere a rate path is created */
-const ensureRatePathPath = (plan: PlanObject, path: string): sla.PathObject => {
-  plan.rates = plan.quotas || {};
+const ensureRatePath = (plan: PlanObject, path: string): sla.PathObject => {
+  plan.rates = plan.rates || {};
   if (!plan.rates[path]) {
     plan.rates[path] = {};
   }
@@ -97,6 +97,10 @@ const ensureRatePathPath = (plan: PlanObject, path: string): sla.PathObject => {
 };
 
 const addLimit = (po: PathObject, verb: string, metric: string, limit: LimitObject): void => {
-  po[verb] = po[verb] || {};
-  po[verb][metric] = limit;
+  let vi = po[verb];
+  if (!vi) {
+    vi = {};
+    po[verb] = vi;
+  }
+  vi[metric] = limit;
 };

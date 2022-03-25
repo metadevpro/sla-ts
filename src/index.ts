@@ -1,2 +1,3 @@
-export * from './dsl/index';
-export * from './model/index';
+export * from './dsl';
+export * from './model';
+export * from './validator';
