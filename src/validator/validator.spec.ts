@@ -11,7 +11,8 @@ describe('validator', () => {
         id: 'a',
         type: 'plans'
       },
-      metrics: {}
+      metrics: {},
+      plans: {}
     };
     const errors = await SlaValidator.validateDocument(doc);
 
@@ -24,7 +25,8 @@ describe('validator', () => {
         id: 'a',
         type: 'plans'
       },
-      metrics: {}
+      metrics: {},
+      plans: {}
     } as Partial<SlaDocument>;
 
     const errors = await SlaValidator.validateDocument(doc as SlaDocument);
@@ -40,7 +42,8 @@ describe('validator', () => {
         id: 'a',
         type: 'plans'
       },
-      metrics: {}
+      metrics: {},
+      plans: {}
     };
     const errors = await SlaValidator.validateDocument(doc);
 
