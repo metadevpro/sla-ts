@@ -8,7 +8,8 @@ describe('validator', () => {
     const doc: SlaDocument = {
       sla: '1.0.0',
       context: {
-        id: 'a'
+        id: 'a',
+        type: 'plans'
       },
       metrics: {}
     };
@@ -20,7 +21,8 @@ describe('validator', () => {
     const doc: Partial<SlaDocument> = {
       sla: undefined,
       context: {
-        id: 'a'
+        id: 'a',
+        type: 'plans'
       },
       metrics: {}
     } as Partial<SlaDocument>;
@@ -35,7 +37,8 @@ describe('validator', () => {
     const doc: SlaDocument = {
       sla: '-12.0.0',
       context: {
-        id: 'a'
+        id: 'a',
+        type: 'plans'
       },
       metrics: {}
     };

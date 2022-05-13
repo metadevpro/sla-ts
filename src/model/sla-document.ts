@@ -9,13 +9,17 @@ export interface SlaDocument {
   context: ContextObject;
   /** Required. A list of metrics to use in the context of the SLA. */
   metrics: { [metricName: string]: MetricObject | UrlReference };
-  /** Optional A set of plans to define different service levels per plan */
+  /** Required when context.type=plans A set of plans to define different service levels per plan */
   plans?: { [planName: string]: PlanObject };
+  /** Required when context.type=agreement A set of plans to define different service levels per plan */
+  terms?: PlanObject;
 }
 
 export interface ContextObject {
   /** Required The identification of the SLA context. */
   id: string;
+  /** Required: Agreement or plan */
+  type: 'plans' | 'agreement';
   /** Optional Indicates a URI (absolute or relative) describing the API, described in the OpenAPI format, to be instrumented. If unspecified, the associated API is the one defined by the referring OpenAPI specification main document. */
   api?: UrlReference;
   /** Optional Provider information: data about the owner/host of the API. This field is required in case of the context type is instance. */

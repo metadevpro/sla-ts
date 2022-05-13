@@ -3,7 +3,7 @@ import * as sla from '../model';
 import { LimitObject, PathObject, PlanObject } from '../model';
 
 export class SlaBuilder {
-  static createSlaDocument(
+  static createSlaPlansDocument(
     slaId: string,
     apiUrl?: string,
     provider?: string,
@@ -16,11 +16,37 @@ export class SlaBuilder {
       sla: '1.0.0',
       context: {
         id: slaId,
+        type: 'plans',
         api,
         provider
       },
       metrics,
       plans
+    };
+
+    const builder = new SlaBuilder(doc);
+    return builder;
+  }
+
+  static createSlaAgreementDocument(
+    slaId: string,
+    apiUrl?: string,
+    provider?: string,
+    metrics: { [metricName: string]: sla.MetricObject | sla.UrlReference } = {},
+    terms: sla.PlanObject = {}
+  ): SlaBuilder {
+    const api = apiUrl ? { $ref: apiUrl } : undefined;
+
+    const doc: sla.SlaDocument = {
+      sla: '1.0.0',
+      context: {
+        id: slaId,
+        type: 'agreement',
+        api,
+        provider
+      },
+      metrics,
+      terms
     };
 
     const builder = new SlaBuilder(doc);
