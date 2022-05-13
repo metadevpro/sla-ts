@@ -34,6 +34,8 @@ export class SlaValidator {
     checkPropertyRequired(errors, this.doc, 'metrics', '');
 
     checkContext(errors, this.doc.context);
+    checkPropertyDocumentType(errors, this.doc);
+
     checkMetrics(errors, this.doc.metrics);
     checkPlans(errors, this.doc.plans);
 
@@ -44,6 +46,8 @@ export class SlaValidator {
 
 const checkContext = (errors: ValidationError[], ctx: ContextObject): void => {
   checkPropertyRequired(errors, ctx, 'id', 'context.id');
+  checkPropertyRequired(errors, ctx, 'type', 'context.type', ['plans', 'agreement']);
+
   if (ctx.api) {
     checkHasUrlReference(errors, ctx.api, 'context.api');
   }
@@ -277,7 +281,8 @@ const checkPropertyRequired = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   obj: any,
   property: string,
-  path: string
+  path: string,
+  validValues?: string[]
 ): void => {
   const value = obj[property];
   if (value === null || value === undefined) {
@@ -287,6 +292,16 @@ const checkPropertyRequired = (
       message: `Property ${property} is required.`,
       path: path + property
     });
+  } else if (validValues) {
+    if (!validValues.includes(value)) {
+      const validValuesStr = validValues.map((v) => `'${v}'`).join(', ');
+      errors.push({
+        severity: 'error',
+        code: 'C004',
+        message: `Property ${property} must be one of the following values: [${validValuesStr}] but '${value}' was found.`,
+        path: path + property
+      });
+    }
   }
 };
 const checkSlaVersion = (errors: ValidationError[], slaVersion: string): void => {
@@ -314,6 +329,45 @@ const checkHasUrlReference = (
       message: `URL reference is required at ${path}`,
       path
     });
+  }
+};
+
+const checkPropertyDocumentType = (errors: ValidationError[], doc: SlaDocument): void => {
+  if (doc?.context?.type === 'plans') {
+    if (!doc?.plans) {
+      errors.push({
+        severity: 'error',
+        code: 'C005',
+        message: `Missing plans for type='plans'.`,
+        path: '.'
+      });
+    }
+    if (doc?.terms) {
+      errors.push({
+        severity: 'error',
+        code: 'C006',
+        message: `Unexpected terms found for type='plans'.`,
+        path: '.'
+      });
+    }
+  }
+  if (doc?.context?.type === 'agreement' && !doc.terms) {
+    if (doc?.plans) {
+      errors.push({
+        severity: 'error',
+        code: 'C007',
+        message: `Unexpected plans found for type='agreement'.`,
+        path: '.'
+      });
+    }
+    if (!doc?.terms) {
+      errors.push({
+        severity: 'error',
+        code: 'C008',
+        message: `Missing terms for type='agreement'.`,
+        path: '.'
+      });
+    }
   }
 };
 
