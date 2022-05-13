@@ -1,0 +1,38 @@
+sla: 1.0.0
+context:
+  id: petstore-sample
+  type: plans
+  api:
+    $ref: ./petstore-service.yml
+  provider: ISAGroup
+metrics:
+  requests:
+    type: 'int64'
+    description: 'Number of requests'
+plans:
+  base:
+    availability: R/00:00:00Z/23:00:00Z
+  free:
+    rates:
+      /pets/{id}:
+        get:
+          requests:
+            - max: 1
+              period: second
+    quotas:
+      /pets:
+        post:
+          requests:
+            - max: 10
+              period: minute
+  pro:
+    pricing:
+      cost: 5
+      currency: EUR
+      billing: monthly
+    rates:
+      /pets/{id}:
+        get:
+          requests:
+            - max: 100
+              period: second

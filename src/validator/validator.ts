@@ -38,6 +38,7 @@ export class SlaValidator {
 
     checkMetrics(errors, this.doc.metrics);
     checkPlans(errors, this.doc.plans);
+    // todo: checkTerms
 
     this.errors = errors;
     return errors;
@@ -77,7 +78,7 @@ const checkPlans = (
   Object.keys(plans).forEach((planName) => {
     const plan = plans[planName];
     if (plan) {
-      checkPlan(errors, plan, `plans['${plan}']`);
+      checkPlan(errors, plan, `plans.${planName}`);
     }
   });
 };
@@ -151,7 +152,7 @@ const checkQuotas = (
   }
   Object.keys(quotas || []).forEach((name) => {
     const quota = quotas[name];
-    checkPathObject(errors, quota, `${path}.quotas['${name}']`);
+    checkPathObject(errors, quota, `${path}.quotas.['${name}']`);
   });
 };
 const checkRates = (
@@ -180,7 +181,7 @@ const checkPathObject = (errors: ValidationError[], po: PathObject, path: string
   }
   Object.keys(po).forEach((method) => {
     const op = po[method];
-    checkMethodObject(errors, op, `${path}['${method}']`);
+    checkMethodObject(errors, op, `${path}.${method}`);
   });
 };
 
@@ -196,7 +197,7 @@ const checkMethodObject = (errors: ValidationError[], op: OperationObject, path:
   }
   Object.keys(op).forEach((metric) => {
     const limit = op[metric];
-    checkLimitObject(errors, limit, `${path}['${metric}']`);
+    checkLimitObject(errors, limit, `${path}.${metric}`);
   });
 };
 const checkLimitObject = (errors: ValidationError[], limit: LimitObject, path: string): void => {
@@ -290,7 +291,7 @@ const checkPropertyRequired = (
       severity: 'error',
       code: 'C001',
       message: `Property ${property} is required.`,
-      path: path + property
+      path: `${path}.${property}`
     });
   } else if (validValues) {
     if (!validValues.includes(value)) {
