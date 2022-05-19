@@ -3,6 +3,7 @@
  * Client Line Interface tooling for SLAs
  */
 
+import * as colors from '@colors/colors/safe';
 import { exit } from 'process';
 import { parseArguments, validateCommand } from './arg-parse';
 import { CommandType } from './command';
@@ -35,7 +36,7 @@ const main = async (argv: string[]): Promise<number> => {
 };
 
 const hello = (): void => {
-  console.log(`sla-cli v: ${VERSION}`);
+  console.log(colors.green('sla-cli') + colors.yellow(` v: ${VERSION}`));
 };
 
 // Execute

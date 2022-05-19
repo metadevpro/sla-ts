@@ -52,6 +52,14 @@ const checkContext = (errors: ValidationError[], ctx: ContextObject): void => {
   if (ctx.api) {
     checkHasUrlReference(errors, ctx.api, 'context.api');
   }
+  if (ctx.validity) {
+    if (ctx.validity.from) {
+      checkValueIsValidDate(errors, ctx.validity.from, 'context.validity.from');
+    }
+    if (ctx.validity.to) {
+      checkValueIsValidDate(errors, ctx.validity.to, 'context.validity.to');
+    }
+  }
 };
 const checkMetrics = (
   errors: ValidationError[],
@@ -374,6 +382,25 @@ const checkPropertyDocumentType = (errors: ValidationError[], doc: SlaDocument):
   }
 };
 
+const regexValidDate = /^\d{4}-\d{2}-\d{2}$/i;
+const regexValidTime = /^\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2}))?$/i;
+const regexValidDateTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2}))?$/i;
+
+const checkValueIsValidDate = (errors: ValidationError[], field: unknown, path: string): void => {
+  if (typeof field !== 'string' || !isValidDateOrTime(field.trim())) {
+    errors.push({
+      severity: 'error',
+      code: 'C009',
+      message: `Invalid datetime accordingly to ISO 8601.`,
+      path
+    });
+  }
+};
+
+const isValidDateOrTime = (ts: string): boolean => {
+  return regexValidDate.test(ts) || regexValidTime.test(ts) || regexValidDateTime.test(ts);
+};
+
 /** Checks for a valid Repeating Time interval: ISO 8601 */
 const isValidAvailability = (availability: string): boolean => {
   // Sample: R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M
@@ -406,7 +433,7 @@ const isInterval = (interval: string): boolean => {
 };
 
 const toDateExpression = (dt: string): Date => {
-  const isOnlyTime = /^\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2})$)?/i.exec(dt.trim());
+  const isOnlyTime = regexValidTime.exec(dt.trim());
   if (isOnlyTime) {
     const dt1 = new Date().toISOString().substring(0, 11) + dt.trim();
     return new Date(dt1);
@@ -422,9 +449,7 @@ const isTimeStamp = (ts: string): boolean => {
   // sample: 2007-03-01T13:00:00+02:00
   // sample: 2007-03-01T13:00:00.123456+02:00
 
-  const mt = /(\d{4}-\d{2}-\d{2}T)?\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2}))?/i.exec(
-    ts.trim()
-  );
+  const mt = isValidDateOrTime(ts.trim());
   return !!mt;
 };
 /** Checks for a valid Duration: ISO 8601 */

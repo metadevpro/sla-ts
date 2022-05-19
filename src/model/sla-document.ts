@@ -31,9 +31,9 @@ export interface ContextObject {
 }
 
 export interface ContractValidity {
-  /** Optional When the contract starts its validity. */
+  /** Optional When the contract starts its validity. ISO 8601 date or datetime */
   from?: string;
-  /** Optional When the contract ends its validity. */
+  /** Optional When the contract ends its validity. ISO 8601 date or datetime */
   to?: string;
 }
 

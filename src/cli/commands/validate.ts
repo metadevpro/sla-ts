@@ -1,5 +1,6 @@
 import { Command } from '../command';
 
+import * as colors from '@colors/colors/safe';
 import { readFileSync } from 'fs';
 import { parse as parseYaml } from 'yaml';
 import { SlaValidator } from '../../validator/validator';
@@ -18,11 +19,11 @@ export const validateSla = async (cmd: Command): Promise<number> => {
     errors.map((e) => {
       const msg = `${e.severity} ${e.code}: at ${e.path} ${e.message}`;
       if (e.severity === 'error') {
-        console.error(msg);
+        console.error(colors.red(msg));
       } else if (e.severity === 'warn' || e.severity === 'deprecated') {
-        console.warn(msg);
+        console.warn(colors.yellow(msg));
       } else if (e.severity === 'info') {
-        console.log(msg);
+        console.log(colors.white(msg));
       }
     });
     if (errors.length) {
@@ -30,7 +31,7 @@ export const validateSla = async (cmd: Command): Promise<number> => {
     }
     return errors.length > 0 ? 1000 : 0;
   } catch (ex) {
-    console.error(`Error loading/parsing the SLA: ${ex}`);
+    console.error(colors.red(`Error loading/parsing the SLA: ${ex}`));
     return 100;
   }
 };
