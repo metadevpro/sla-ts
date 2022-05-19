@@ -55,14 +55,14 @@
     "all": true
   },
   "dependencies": {
-    "yaml": "^2.0.1"
+    "yaml": "^2.1.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^5.23.0",
+    "@types/node": "^17.0.34",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "chai": "^4.3.6",
     "coveralls": "^3.1.1",
     "eslint": "^8.15.0",
