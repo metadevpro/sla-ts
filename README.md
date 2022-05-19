@@ -18,8 +18,16 @@ Under `src/` you will find:
 
 ## Install
 
+Locally in your project:
+
 ```bash
 npm i sla-ts --save
+```
+
+Globally as a CLI tool:
+
+```bash
+npm i -g sla-ts
 ```
 
 ## Test
@@ -27,6 +35,27 @@ npm i sla-ts --save
 ```bash
 npm test
 ```
+
+## How to use the CLI
+
+Locally:
+
+```bash
+npm run cli
+npm run cli validate samples/sla1-invalid.json
+npm run cli validate samples/sla1.yaml
+npm run cli generate samples/sla1.yaml samples/sla1.html
+```
+
+As a global tool:
+
+```bash
+sla-ts
+sla-ts validate samples/sla1-invalid.json
+sla-ts validate samples/sla1.yaml
+sla-ts generate samples/sla1.yaml samples/sla1.html
+```
+
 
 ## Versions & Changelog
 
