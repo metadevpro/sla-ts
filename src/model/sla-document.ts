@@ -24,6 +24,17 @@ export interface ContextObject {
   api?: UrlReference;
   /** Optional Provider information: data about the owner/host of the API. This field is required in case of the context type is instance. */
   provider?: string;
+  /** Optional Time frame for the SLA Contract */
+  availability?: ContractAvailability;
+  /** Optional Api Keys */
+  apikeys?: string[];
+}
+
+export interface ContractAvailability {
+  /** Optional When the contract starts its validity. */
+  from?: string;
+  /** Optional When the contract ends its validity. */
+  to?: string;
 }
 
 /** External reference */
@@ -44,6 +55,8 @@ export interface MetricObject {
 
 /** Describes a usage plan for the API with its associate costs, availability and guarantees. */
 export interface PlanObject {
+  /** Optional Original plan name (used for agreements)  */
+  plan?: string;
   /**	Optional Availability of the service for this plan expressed via time slots using the ISO 8601 time intervals format. */
   availability?: string;
   /** Optional Specific pricing data for this plan. Overrides default pricing data defined before. */
