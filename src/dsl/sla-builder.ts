@@ -128,5 +128,8 @@ const addLimit = (po: PathObject, verb: string, metric: string, limit: LimitObje
     vi = {};
     po[verb] = vi;
   }
-  vi[metric] = limit;
+  if (!vi[metric]) {
+    vi[metric] = [];
+  }
+  vi[metric].push(limit);
 };

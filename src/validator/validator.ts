@@ -196,8 +196,10 @@ const checkMethodObject = (errors: ValidationError[], op: OperationObject, path:
     return;
   }
   Object.keys(op).forEach((metric) => {
-    const limit = op[metric];
-    checkLimitObject(errors, limit, `${path}.${metric}`);
+    const limits = op[metric] || [];
+    limits.forEach((limit) => {
+      checkLimitObject(errors, limit, `${path}.${metric}`);
+    });
   });
 };
 const checkLimitObject = (errors: ValidationError[], limit: LimitObject, path: string): void => {
