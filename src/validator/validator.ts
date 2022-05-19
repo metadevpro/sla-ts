@@ -391,26 +391,40 @@ const isInterval = (interval: string): boolean => {
 
   const ps = (interval || '').trim().split('/');
 
-  if (ps.length === 2) {
+  if (ps.length === 3) {
     return (
-      (isTimeStamp(ps[0]) && isTimeStamp(ps[1]) && Date.parse(ps[0]) < Date.parse(ps[1])) ||
-      (isTimeStamp(ps[0]) && isDuration(ps[1])) ||
-      (isDuration(ps[0]) && isTimeStamp(ps[1]))
+      (isTimeStamp(ps[1]) &&
+        isTimeStamp(ps[2]) &&
+        toDateExpression(ps[1]) < toDateExpression(ps[2])) ||
+      (isTimeStamp(ps[1]) && isDuration(ps[2])) ||
+      (isDuration(ps[1]) && isTimeStamp(ps[2]))
     );
-  } else if (ps.length === 1) {
-    return isDuration(ps[0]);
+  } else if (ps.length === 2) {
+    return isDuration(ps[1]);
   }
   return false;
 };
 
+const toDateExpression = (dt: string): Date => {
+  const isOnlyTime = /^\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2})$)?/i.exec(dt.trim());
+  if (isOnlyTime) {
+    const dt1 = new Date().toISOString().substring(0, 11) + dt.trim();
+    return new Date(dt1);
+  }
+  return new Date(dt);
+};
+
 /** Checks for a valid TimeStamp: ISO 8601 */
 const isTimeStamp = (ts: string): boolean => {
-  // sample: 2007-03-01T13:00:00Z
+  // sample: 03:00:00Z
+  // sample: 13:00:00+02:00
   // sample: 2007-03-01T13:00:00
   // sample: 2007-03-01T13:00:00+02:00
   // sample: 2007-03-01T13:00:00.123456+02:00
 
-  const mt = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d*)?(Z|(+|-)\d{2}:\d{2})?/i.exec(ts.trim());
+  const mt = /(\d{4}-\d{2}-\d{2}T)?\d{2}:\d{2}:\d{2}(\.\d*)?((Z)|([+-]\d{2}:\d{2}))?/i.exec(
+    ts.trim()
+  );
   return !!mt;
 };
 /** Checks for a valid Duration: ISO 8601 */

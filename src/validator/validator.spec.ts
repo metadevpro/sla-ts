@@ -51,4 +51,45 @@ describe('validator', () => {
     expect(errors[0].code).to.eq('C002');
     expect(errors[0].message).to.eq('SLA Version provided is not supported.');
   });
+
+  it('should report invalid availability', async () => {
+    const doc: SlaDocument = {
+      sla: '1.0.0',
+      context: {
+        id: 'a',
+        type: 'plans'
+      },
+      metrics: {},
+      plans: {
+        base: {
+          availability: 'R/00:00:00Z/23:00ABC'
+        }
+      }
+    };
+    const errors = await SlaValidator.validateDocument(doc);
+
+    expect(errors.length).to.eq(1);
+    expect(errors[0].code).to.eq('C005');
+    expect(errors[0].message).to.eq(
+      'Invalid availability. ISO 8601 time intervals format expected.'
+    );
+  });
+  it('should report valid availability', async () => {
+    const doc: SlaDocument = {
+      sla: '1.0.0',
+      context: {
+        id: 'a',
+        type: 'plans'
+      },
+      metrics: {},
+      plans: {
+        base: {
+          availability: 'R/00:00:00Z/23:00:00Z'
+        }
+      }
+    };
+    const errors = await SlaValidator.validateDocument(doc);
+
+    expect(errors.length).to.eq(0);
+  });
 });
