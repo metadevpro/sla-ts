@@ -24,7 +24,7 @@ Locally in your project:
 npm i sla-ts --save
 ```
 
-Globally as a CLI tool:
+Globally as a CLI tool: _(planned / not yet)_
 
 ```bash
 npm i -g sla-ts
@@ -44,18 +44,17 @@ Locally:
 npm run cli
 npm run cli validate samples/sla1-invalid.json
 npm run cli validate samples/sla1.yaml
-npm run cli generate samples/sla1.yaml samples/sla1.html
+npm run cli document samples/sla1.yaml samples/sla1.html
 ```
 
-As a global tool:
+As a global tool: _(planned / not yet)_
 
 ```bash
 sla-ts
 sla-ts validate samples/sla1-invalid.json
 sla-ts validate samples/sla1.yaml
-sla-ts generate samples/sla1.yaml samples/sla1.html
+sla-ts document samples/sla1.yaml samples/sla1.html
 ```
-
 
 ## Versions & Changelog
 

@@ -1,0 +1,123 @@
+/* Classic Swagger UI style for SLA Documents */
+/* MIT Licence, Metadev 2022. */
+/* Feel free to customize to meet the look and feel of your product or company */
+
+html body {
+    font-family: sans-serif;    
+    margin: 0;
+    background: #fafafa;
+}
+pre, code, tt {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+header {
+    margin-top: 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+main {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+footer {
+    font-size: .85rem;
+    margin: 2rem 3rem;
+    padding: 1rem 0rem;
+    border-top: 2px solid #008800;
+}
+
+h1, h2, h4, h5, h6 {
+    color: #000000;
+}
+h3 {
+    color: #008800;
+}
+a {
+    color: #5C5EF0;
+}
+a:hover {
+    color: #ACAEFF;
+}
+
+label {
+    font-weight: bold;
+}
+
+table {
+    border: 1px solid #008800;
+}
+table th {
+    background-color: #c0eec0;
+}
+table th {
+    text-align: left;
+    padding: .1rem 1rem;
+}
+table td {
+    padding: .1rem 1rem;
+}
+
+.metrics th.name {
+    min-width: 10rem;
+}
+.metrics th.type {
+    min-width: 8rem;
+}
+.metrics th.format {
+        min-width: 8rem;
+}
+.metrics th.description {
+    min-width: 100%;
+}
+
+th.verb {
+    min-width: 4rem;
+}
+th.path {
+    min-width: 15rem;
+}
+th.metric {
+    min-width: 10rem;
+}
+th.limits {
+    width: 100%;
+}
+
+td.verb {
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: .2rem;
+    display: inline-block;
+    min-width: 4rem;
+    margin: .8rem 1rem;
+}
+.verb.get {
+    background-color: #61affe;
+}
+.verb.post {
+    background-color: #49cc90;
+}
+.verb.delete {
+    background-color: #f93e3e;
+}
+.verb.put {
+    background-color: #fca130;
+}
+.verb.options {
+    background-color: #0d5aa7;
+}
+.verb.patch {
+    background-color: #50e3c2;
+}
+.verb.head {
+    background-color: #9012fe;
+}
+.verb.summary {
+    background-color: #9012fe;
+}
+.block {
+    margin-left: 0rem;
+}

@@ -28,6 +28,8 @@ export const validateSla = async (cmd: Command): Promise<number> => {
     });
     if (errors.length) {
       console.log(`${errors.length} errors found.`);
+    } else {
+      console.log(colors.green(`Document is valid.`));
     }
     return errors.length > 0 ? 1000 : 0;
   } catch (ex) {

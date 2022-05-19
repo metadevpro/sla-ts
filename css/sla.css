@@ -1,0 +1,132 @@
+/* Default style for SLA Documents */
+/* MIT Licence, Metadev 2022. */
+/* Feel free to customize to meet the look and feel of your product or company */
+
+@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Rasa:wght@300&display=swap');
+
+html body {
+    margin: 0;
+    background: #fcfcfc;
+    font-family: 'Rasa', serif;
+    font-size: 1.2rem;
+}
+
+pre, code, tt {
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+}
+
+header {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+main {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+footer {
+    font-size: .85rem;
+    border-top: 4px solid #2C3EA0;
+    margin: 2rem 5rem;
+    padding: 1rem 0rem;
+}
+
+h1, h2, h4, h5, h6 {
+    color: #2C3EA0;
+}
+h3 {
+    color: #2C5ED0;
+}
+a {
+    color: #5C5EF0;
+}
+a:hover {
+    color: #ACAEFF;
+}
+
+label {
+    font-weight: bold;
+    min-width: 6rem;
+    display: inline-block;
+}
+label::after {
+    content: ':';
+}
+table {
+    border: 2px solid #2C3EA0;    
+}    
+table th {
+    background-color: #e0e0ff;
+}
+table th {
+    text-align: left;
+    padding: .1rem 1rem;
+}
+table td {
+    padding: .1rem 1rem;
+    vertical-align: middle;
+}
+.metrics th.name {
+    min-width: 10rem;
+}
+.metrics th.type {
+    min-width: 8rem;
+}
+.metrics th.format {
+        min-width: 8rem;
+}
+.metrics th.description {
+    min-width: 100%;
+}
+
+th.verb {
+    min-width: 4rem;
+}
+th.path {
+    min-width: 15rem;
+}
+th.metric {
+    min-width: 10rem;
+}
+th.limits {
+    width: 100%;
+}
+
+td.verb {
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: .2rem;
+    display: inline-block;
+    min-width: 4rem;
+    margin: .8rem 0rem;
+}
+.verb.get {
+    background-color: #61affe;
+}
+.verb.post {
+    background-color: #49aa90;
+}
+.verb.delete {
+    background-color: #c93e3e;
+}
+.verb.put {
+    background-color: #dc8130;
+}
+.verb.options {
+    background-color: #0d5aa7;
+}
+.verb.patch {
+    background-color: #50c3c2;
+}
+.verb.head {
+    background-color: #7012fe;
+}
+.verb.summary {
+    background-color: #8012ce;
+}
+.block {
+    margin-left: 1rem;
+}
