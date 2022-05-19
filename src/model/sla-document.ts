@@ -25,12 +25,12 @@ export interface ContextObject {
   /** Optional Provider information: data about the owner/host of the API. This field is required in case of the context type is instance. */
   provider?: string;
   /** Optional Time frame for the SLA Contract */
-  availability?: ContractAvailability;
+  validity?: ContractValidity;
   /** Optional Api Keys */
   apikeys?: string[];
 }
 
-export interface ContractAvailability {
+export interface ContractValidity {
   /** Optional When the contract starts its validity. */
   from?: string;
   /** Optional When the contract ends its validity. */
