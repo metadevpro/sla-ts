@@ -18,14 +18,14 @@ plans:
       /pets/{id}:
         get:
           requests:
-            max: 1
-            period: second
+            - max: 1
+              period: second
     quotas:
       /pets:
         post:
           requests:
-            max: 10
-            period: minute
+            - max: 10
+              period: minute
   pro:
     pricing:
       cost: 5
@@ -35,5 +35,5 @@ plans:
       /pets/{id}:
         get:
           requests:
-            max: 100
-            period: second
+            - max: 100
+              period: second

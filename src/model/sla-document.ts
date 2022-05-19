@@ -86,7 +86,7 @@ export interface PathObject {
   [method: string]: OperationObject;
 }
 export interface OperationObject {
-  [metric: string]: LimitObject;
+  [metric: string]: LimitObject[];
 }
 export interface LimitObject {
   /** Required Maximum value that can be reached so the limit is not violated. */

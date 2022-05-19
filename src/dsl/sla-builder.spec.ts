@@ -77,10 +77,12 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
   });
   it('should add a second quota for a different plan', () => {
     const sut = SlaBuilder.createSlaPlansDocument('sample1')
@@ -93,15 +95,19 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
     expect(doc.plans?.['pro'].quotas?.['/admin/rooms']['get']).to.not.null;
-    expect(doc.plans?.['pro'].quotas?.['/admin/rooms']['get']['m1']).to.eql({
-      max: 4,
-      period: 'day'
-    });
+    expect(doc.plans?.['pro'].quotas?.['/admin/rooms']['get']['m1']).to.eql([
+      {
+        max: 4,
+        period: 'day'
+      }
+    ]);
   });
   it('should add a second quota for a different path', () => {
     const sut = SlaBuilder.createSlaPlansDocument('sample1')
@@ -114,15 +120,19 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
     expect(doc.plans?.['basic'].quotas?.['/admin/rooms']['get']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/rooms']['get']['m1']).to.eql({
-      max: 4,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/rooms']['get']['m1']).to.eql([
+      {
+        max: 4,
+        period: 'day'
+      }
+    ]);
   });
   it('should add a second quota for a different verb', () => {
     const sut = SlaBuilder.createSlaPlansDocument('sample1')
@@ -135,15 +145,19 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['get']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['get']['m1']).to.eql({
-      max: 4,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['get']['m1']).to.eql([
+      {
+        max: 4,
+        period: 'day'
+      }
+    ]);
   });
   it('should add a second quota for a different metric', () => {
     const sut = SlaBuilder.createSlaPlansDocument('sample1')
@@ -156,14 +170,18 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
-    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m2']).to.eql({
-      max: 4,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
+    expect(doc.plans?.['basic'].quotas?.['/admin/users']['put']['m2']).to.eql([
+      {
+        max: 4,
+        period: 'day'
+      }
+    ]);
   });
 
   it('should add a rate', () => {
@@ -180,10 +198,12 @@ plans: {}
     expect(doc.plans?.['basic']).to.not.null;
     expect(doc.plans?.['basic'].rates?.['/admin/users']).to.not.null;
     expect(doc.plans?.['basic'].rates?.['/admin/users']['put']).to.not.null;
-    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
   });
   it('should create a simple SLA', () => {
     const metricDef = {
@@ -211,9 +231,11 @@ plans: {}
     expect(Object.keys(doc.plans?.['basic'].rates?.['/admin/users'] || []).length).to.eql(2);
     expect(doc.plans?.['basic'].rates?.['/admin/users']['put']).to.not.null;
 
-    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']['m1']).to.eql({
-      max: 3,
-      period: 'day'
-    });
+    expect(doc.plans?.['basic'].rates?.['/admin/users']['put']['m1']).to.eql([
+      {
+        max: 3,
+        period: 'day'
+      }
+    ]);
   });
 });

@@ -23,20 +23,24 @@
       "rates": {
         " /pets/{id}": {
           "get": {
-            "requests": {
-              "max": 1,
-              "period": "second"
-            }
+            "requests": [
+              {
+                "max": 1,
+                "period": "second"
+              }
+            ]
           }
         }
       },
       "quotas": {
         " /pets": {
           "post": {
-            "requests": {
-              "max": 10,
-              "period": "minute"
-            }
+            "requests": [
+              {
+                "max": 10,
+                "period": "minute"
+              }
+            ]
           }
         }
       }
@@ -50,10 +54,12 @@
       "rates": {
         " /pets/{id}": {
           "get": {
-            "requests": {
-              "max": 1,
-              "period": "second"
-            }
+            "requests": [
+              {
+                "max": 1,
+                "period": "second"
+              }
+            ]
           }
         }
       }
