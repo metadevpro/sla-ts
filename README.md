@@ -7,6 +7,15 @@ Provides a model compliant with the schema, and a internal DSL using the builder
 
 Conforms to the specification at [SLA4API 1.0.0 Draft](https://github.com/isa-group/SLA4OAI-Specification/blob/main/versions/1.0.0-Draft.md)
 
+## Contains
+
+Under `src/` you will find:
+
+- `model/` The schema for a valid SLA Document (plans & agreements).
+- `dsl/`   A utility interanl DSL to build SLA documents.
+- `validator/` A validator for SLA documents.
+- `cli/` A command line interface to generate documentation an validation for an SLA document.
+
 ## Install
 
 ```bash
