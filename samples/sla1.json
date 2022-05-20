@@ -13,6 +13,11 @@
       "type": "integer",
       "format": "int64",
       "description": "Number of requests"
+    },
+    "execution": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Execution time (ms)"
     }
   },
   "plans": {
@@ -21,19 +26,43 @@
     },
     "free": {
       "rates": {
-        " /pets/{id}": {
+        "/pets/{id}": {
           "get": {
             "requests": [
               {
                 "max": 1,
                 "period": "second"
+              },
+              {
+                "max": 45,
+                "period": "minute"
+              },
+              {
+                "max": 256,
+                "period": "hour"
+              }
+            ],
+            "execution": [
+              {
+                "max": 450,
+                "period": "day"
+              }
+            ]
+          }
+        },
+        "/pets": {
+          "delete": {
+            "requests": [
+              {
+                "max": 5,
+                "period": "minute"
               }
             ]
           }
         }
       },
       "quotas": {
-        " /pets": {
+        "/pets": {
           "post": {
             "requests": [
               {

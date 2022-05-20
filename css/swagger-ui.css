@@ -40,6 +40,9 @@ a {
 a:hover {
     color: #ACAEFF;
 }
+.field div {
+    display: inline;
+}
 
 label {
     font-weight: bold;
@@ -47,6 +50,7 @@ label {
 
 table {
     border: 1px solid #008800;
+    border-collapse: collapse; 
 }
 table th {
     background-color: #c0eec0;
@@ -84,7 +88,15 @@ th.metric {
 th.limits {
     width: 100%;
 }
+td.verb {
+    vertical-align: top;
+}
 
+td.path,
+td.metric,
+td.limits {
+    vertical-align: top;
+}
 td.verb {
     text-align: center;
     text-transform: uppercase;
@@ -92,7 +104,7 @@ td.verb {
     border-radius: .2rem;
     display: inline-block;
     min-width: 4rem;
-    margin: .8rem 1rem;
+    margin: .3rem 1rem;
 }
 .verb.get {
     background-color: #61affe;
@@ -120,4 +132,13 @@ td.verb {
 }
 .block {
     margin-left: 0rem;
+}
+.limit .max, .limit .period {
+    display: inline;
+}
+div[name='max'] {
+    display: inline-block;
+    min-width: 3rem;
+    text-align: right;
+    margin-right: 1rem;
 }

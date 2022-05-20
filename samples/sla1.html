@@ -16,25 +16,25 @@
         <div class="context">
           <h2>Context</h2>
           <div class="block">
-                      <div class="id">
+                      <div class="id field">
             <label for="id">Id</label>
-            <span name="id">petstore-sample</span>
+            <div name="id">petstore-sample</div>
           </div>
-                      <div class="type">
+                      <div class="type field">
             <label for="type">Type</label>
-            <span name="type">plans</span>
+            <div name="type">plans</div>
           </div>
-                      <div class="api">
+                      <div class="api field">
             <label for="api">API</label>
-            <span name="api">./petstore-service.yml</span>
+            <div name="api">./petstore-service.yml</div>
           </div>
-                      <div class="provider">
+                      <div class="provider field">
             <label for="provider">Provider</label>
-            <span name="provider">ISAGroup</span>
+            <div name="provider">ISAGroup</div>
           </div>
-                      <div class="Validity">
+                      <div class="Validity field">
             <label for="Validity">Validity</label>
-            <span name="Validity">-</span>
+            <div name="Validity">-</div>
           </div>
           </div>
         </div>
@@ -55,6 +55,12 @@
   <td class="type"><code>integer</code></td>
   <td class="format"><code>int64</code></td>
   <td class="description">Number of requests</td>
+</tr>
+<tr class="metric">
+  <td class="name"><a name="metric-execution"><code>execution</code></a></td>
+  <td class="type"><code>integer</code></td>
+  <td class="format"><code>int64</code></td>
+  <td class="description">Execution time (ms)</td>
 </tr>     
     </tbody>
     <tfooter>
@@ -73,9 +79,9 @@
       <h3>Plan: base</h3>
     </a>
     <div class="block">
-                <div class="availability">
+                <div class="availability field">
             <label for="availability">Availability</label>
-            <span name="availability">R/00:00:00Z/23:00:00Z</span>
+            <div name="availability">R/00:00:00Z/23:00:00Z</div>
           </div>
       
       <div class="rates">
@@ -97,82 +103,120 @@
       <h3>Plan: free</h3>
     </a>
     <div class="block">
-                <div class="availability">
+                <div class="availability field">
             <label for="availability">Availability</label>
-            <span name="availability"></span>
+            <div name="availability"></div>
           </div>
       
       <div class="rates">
     <a name="free-rates">
       <h4>Rates</h4>
     </a>
-    <table class="rate">
-    <thead>
-      <th class="verb">Verb</th>
-      <th class="path">Path</th>
-      <th class="metric">Metric</th>
-      <th class="limits">Limits</th>
-    </thead>
-    <tbody>
-      <tr>
+    <table class="rates">
+  <thead>
+    <th class="verb">Verb</th>
+    <th class="path">Path</th>
+    <th class="metric">Metric</th>
+    <th class="limits">Limits</th>
+  </thead>
+  <tbody>
+    <tr>
     <td class="verb get"><code>get<code></td>
-    <td class="path"><code> /pets/{id}<code></td>
+    <td class="path"><code>/pets/{id}<code></td>
     <td class="metric"><a href="#metric-requests"><code>requests</code></a></td>
     <td class="limit"><div class="limit">
-              <div class="max">
+              <div class="max field">
             <label for="max">Maximum</label>
-            <span name="max">1</span>
+            <div name="max">1</div>
           </div>
-              <div class="period">
+              <div class="period field">
             <label for="period">Period</label>
-            <span name="period">second</span>
+            <div name="period">second</div>
+          </div>
+  </div>
+<div class="limit">
+              <div class="max field">
+            <label for="max">Maximum</label>
+            <div name="max">45</div>
+          </div>
+              <div class="period field">
+            <label for="period">Period</label>
+            <div name="period">minute</div>
+          </div>
+  </div>
+<div class="limit">
+              <div class="max field">
+            <label for="max">Maximum</label>
+            <div name="max">256</div>
+          </div>
+              <div class="period field">
+            <label for="period">Period</label>
+            <div name="period">hour</div>
           </div>
   </div></td>
   </tr>
-      <tr>
-        <td class="verb"></td>
-        <td class="path"></td>
-        <td class="metric"></td>
-        <td class="limit"></td>
-      </tr>
-    </tbody>
-  </table>
+<tr>
+    <td class="verb "><code><code></td>
+    <td class="path"><code><code></td>
+    <td class="metric"><a href="#metric-execution"><code>execution</code></a></td>
+    <td class="limit"><div class="limit">
+              <div class="max field">
+            <label for="max">Maximum</label>
+            <div name="max">450</div>
+          </div>
+              <div class="period field">
+            <label for="period">Period</label>
+            <div name="period">day</div>
+          </div>
+  </div></td>
+  </tr>
+<tr>
+    <td class="verb delete"><code>delete<code></td>
+    <td class="path"><code>/pets<code></td>
+    <td class="metric"><a href="#metric-requests"><code>requests</code></a></td>
+    <td class="limit"><div class="limit">
+              <div class="max field">
+            <label for="max">Maximum</label>
+            <div name="max">5</div>
+          </div>
+              <div class="period field">
+            <label for="period">Period</label>
+            <div name="period">minute</div>
+          </div>
+  </div></td>
+  </tr>
+  </tbody>
+</table>
   </div>
       <div class="quotas">
     <a name="free-quotas">
       <h4>Quotas</h4>
     </a>
-    <table class="quota">
-    <thead>
-      <th class="verb">Verb</th>
-      <th class="path">Path</th>
-      <th class="metric">Metric</th>
-      <th class="limits">Limits</th>
-    </thead>
-    <tbody>
-      <tr>
+    <table class="quotas">
+  <thead>
+    <th class="verb">Verb</th>
+    <th class="path">Path</th>
+    <th class="metric">Metric</th>
+    <th class="limits">Limits</th>
+  </thead>
+  <tbody>
+    <tr>
     <td class="verb post"><code>post<code></td>
-    <td class="path"><code> /pets<code></td>
+    <td class="path"><code>/pets<code></td>
     <td class="metric"><a href="#metric-requests"><code>requests</code></a></td>
     <td class="limit"><div class="limit">
-              <div class="max">
+              <div class="max field">
             <label for="max">Maximum</label>
-            <span name="max">10</span>
+            <div name="max">10</div>
           </div>
-              <div class="period">
+              <div class="period field">
             <label for="period">Period</label>
-            <span name="period">minute</span>
+            <div name="period">minute</div>
           </div>
   </div></td>
   </tr>
-      <tr>
-        <td class="verb"></td>
-        <td class="path"></td>
-        <td class="metric"></td>
-        <td class="limit"></td>
-      </tr>
-    </tbody>
-  </table>
+  </tbody>
+</table>
   </div>
     </div>
   </div>
@@ -181,24 +225,24 @@
       <h3>Plan: pro</h3>
     </a>
     <div class="block">
-                <div class="availability">
+                <div class="availability field">
             <label for="availability">Availability</label>
-            <span name="availability"></span>
+            <div name="availability"></div>
           </div>
       <div class="pricing">
   <a name="pro-pricing"><h4>Pricing</h4></a>
   <div class="block">
-              <div class="cost">
+              <div class="cost field">
             <label for="cost">Cost</label>
-            <span name="cost">5</span>
+            <div name="cost">5</div>
           </div>
-              <div class="currency">
+              <div class="currency field">
             <label for="currency">Currency</label>
-            <span name="currency">EUR</span>
+            <div name="currency">EUR</div>
           </div>
-              <div class="billing">
+              <div class="billing field">
             <label for="billing">Billing</label>
-            <span name="billing">monthly</span>
+            <div name="billing">monthly</div>
           </div>
   </div>
 </div>
@@ -207,37 +251,31 @@
     <a name="pro-rates">
       <h4>Rates</h4>
     </a>
-    <table class="rate">
-    <thead>
-      <th class="verb">Verb</th>
-      <th class="path">Path</th>
-      <th class="metric">Metric</th>
-      <th class="limits">Limits</th>
-    </thead>
-    <tbody>
-      <tr>
+    <table class="rates">
+  <thead>
+    <th class="verb">Verb</th>
+    <th class="path">Path</th>
+    <th class="metric">Metric</th>
+    <th class="limits">Limits</th>
+  </thead>
+  <tbody>
+    <tr>
     <td class="verb get"><code>get<code></td>
     <td class="path"><code> /pets/{id}<code></td>
     <td class="metric"><a href="#metric-requests"><code>requests</code></a></td>
     <td class="limit"><div class="limit">
-              <div class="max">
+              <div class="max field">
             <label for="max">Maximum</label>
-            <span name="max">1</span>
+            <div name="max">1</div>
           </div>
-              <div class="period">
+              <div class="period field">
             <label for="period">Period</label>
-            <span name="period">second</span>
+            <div name="period">second</div>
           </div>
   </div></td>
   </tr>
-      <tr>
-        <td class="verb"></td>
-        <td class="path"></td>
-        <td class="metric"></td>
-        <td class="limit"></td>
-      </tr>
-    </tbody>
-  </table>
+  </tbody>
+</table>
   </div>
       <div class="quotas">
     <a name="pro-quotas">
@@ -250,7 +288,7 @@
   </div>
       </main>
       <footer>
-        <span>Generated at 2022-05-19T18:40:56.474Z with <a href="https://github.com/metadevpro/sla-ts">sla-ts</a>.</span>
+        <span>Generated at 2022-05-20T08:12:02.543Z with <a href="https://github.com/metadevpro/sla-ts">sla-ts</a>.</span>
       </footer>
     <body>
   </html>

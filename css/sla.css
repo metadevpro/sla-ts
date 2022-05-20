@@ -45,6 +45,9 @@ a {
 a:hover {
     color: #ACAEFF;
 }
+.field div {
+    display: inline;
+}
 
 label {
     font-weight: bold;
@@ -55,7 +58,8 @@ label::after {
     content: ':';
 }
 table {
-    border: 2px solid #2C3EA0;    
+    border: 2px solid #2C3EA0;   
+    border-collapse: collapse; 
 }    
 table th {
     background-color: #e0e0ff;
@@ -93,6 +97,15 @@ th.metric {
 th.limits {
     width: 100%;
 }
+td.verb {
+    vertical-align: top;
+}
+
+td.path,
+td.metric,
+td.limits {
+    vertical-align: top;
+}
 
 td.verb {
     text-align: center;
@@ -100,8 +113,9 @@ td.verb {
     color: #fff;
     border-radius: .2rem;
     display: inline-block;
-    min-width: 4rem;
-    margin: .8rem 0rem;
+    min-width: 4rem;   
+    display: inline-block;
+    margin: .2rem .2rem;
 }
 .verb.get {
     background-color: #61affe;
@@ -129,4 +143,27 @@ td.verb {
 }
 .block {
     margin-left: 1rem;
+}
+.pricing .block .cost,
+.pricing .block .currency,
+.pricing .block .billing {
+    display: inline;
+}
+.pricing .block .currency label,
+.pricing .block .billing label {
+    visibility: hidden;
+    width: 0rem;
+    min-width: unset;
+}
+.pricing .block .billing span::before {
+    content: '/ ';
+}
+.limit .max, .limit .period {
+    display: inline;
+}
+div[name='max'] {
+    display: inline-block;
+    min-width: 3rem;
+    text-align: right;
+    margin-right: 1rem;
 }
