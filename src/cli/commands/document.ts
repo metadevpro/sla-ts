@@ -209,7 +209,7 @@ const generateRates = (planName: string, plan: PlanObject): string => {
     : tableForRatesOrQuota(
         'rates',
         Object.keys(rates)
-          .map((path) => generateRate(path, rates[path]))
+          .map((path) => generateLimitsForPath(path, rates[path]))
           .join('\n')
       );
 
@@ -229,7 +229,7 @@ const generateQuotas = (planName: string, plan: PlanObject): string => {
     : tableForRatesOrQuota(
         'quotas',
         Object.keys(quotas)
-          .map((path) => generateRate(path, quotas[path]))
+          .map((path) => generateLimitsForPath(path, quotas[path]))
           .join('\n')
       );
 
@@ -254,13 +254,6 @@ const tableForRatesOrQuota = (type: string, contentHtml: string): string => {
     ${contentHtml}
   </tbody>
 </table>`;
-};
-
-const generateRate = (path: string, rate: PathObject): string => {
-  return generateLimitsForPath(path, rate);
-};
-const generateQuota = (path: string, quota: PathObject): string => {
-  return generateLimitsForPath(path, quota);
 };
 
 const generateLimitsForPath = (path: string, pathObject: PathObject): string => {
