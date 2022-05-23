@@ -1,3 +1,4 @@
+import { parse as parseYaml } from 'yaml';
 import {
   ContextObject,
   LimitObject,
@@ -17,6 +18,12 @@ import { ValidationError } from './validation-error';
 export class SlaValidator {
   static async validateDocument(doc: SlaDocument): Promise<ValidationError[]> {
     const validator = new SlaValidator(doc);
+    return await validator.validate();
+  }
+
+  static async validateYamlDocument(yaml: string): Promise<ValidationError[]> {
+    const sla = parseYaml(yaml);
+    const validator = new SlaValidator(sla);
     return await validator.validate();
   }
 
