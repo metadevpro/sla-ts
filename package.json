@@ -1,9 +1,13 @@
 {
   "name": "sla-ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SLA4API Schema model in TypeScript",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/cjs/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/metadevpro/sla-ts.git"
