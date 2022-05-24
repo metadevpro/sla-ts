@@ -4,9 +4,10 @@
   "description": "SLA4API Schema model in TypeScript",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "typings": "dist/cjs/index.d.ts",
+  "typings": "dist/esm/index.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "src/"
   ],
   "repository": {
     "type": "git",

@@ -1,1 +1,1 @@
-export * from './sla-builder';
+export { SlaBuilder } from './sla-builder';
