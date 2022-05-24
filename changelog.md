@@ -1,9 +1,9 @@
 # Changelog: SLA-TS
 
-## Version 0.0.3 / 2022.05.24
+## Version 0.0.5 / 2022.05.24
 
 - Removed mocha, added jest.
-- Published as commonjs and Esmodule
+- Published as commonjs and Esmodule + TS sources
 
 ## Version 0.0.1 / 2022.03.25
 

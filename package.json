@@ -1,6 +1,6 @@
 {
   "name": "sla-ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "SLA4API Schema model in TypeScript",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
