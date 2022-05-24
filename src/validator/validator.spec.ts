@@ -1,7 +1,5 @@
-import * as chai from 'chai';
 import { SlaDocument } from '../model/sla-document';
 import { SlaValidator } from '../validator/validator';
-const expect = chai.expect;
 
 describe('validator', () => {
   it('minimal sla should validate', async () => {
@@ -16,7 +14,7 @@ describe('validator', () => {
     };
     const errors = await SlaValidator.validateDocument(doc);
 
-    expect(errors.length).to.eq(0);
+    expect(errors.length).toEqual(0);
   });
   it('missing sla version', async () => {
     const doc: Partial<SlaDocument> = {
@@ -31,9 +29,9 @@ describe('validator', () => {
 
     const errors = await SlaValidator.validateDocument(doc as SlaDocument);
 
-    expect(errors.length).to.eq(1);
-    expect(errors[0].code).to.eq('C001');
-    expect(errors[0].message).to.eq('Property sla is required.');
+    expect(errors.length).toEqual(1);
+    expect(errors[0].code).toEqual('C001');
+    expect(errors[0].message).toEqual('Property sla is required.');
   });
   it('invalid sla version', async () => {
     const doc: SlaDocument = {
@@ -47,9 +45,9 @@ describe('validator', () => {
     };
     const errors = await SlaValidator.validateDocument(doc);
 
-    expect(errors.length).to.eq(1);
-    expect(errors[0].code).to.eq('C002');
-    expect(errors[0].message).to.eq('SLA Version provided is not supported.');
+    expect(errors.length).toEqual(1);
+    expect(errors[0].code).toEqual('C002');
+    expect(errors[0].message).toEqual('SLA Version provided is not supported.');
   });
 
   it('should report invalid availability', async () => {
@@ -68,9 +66,9 @@ describe('validator', () => {
     };
     const errors = await SlaValidator.validateDocument(doc);
 
-    expect(errors.length).to.eq(1);
-    expect(errors[0].code).to.eq('C005');
-    expect(errors[0].message).to.eq(
+    expect(errors.length).toEqual(1);
+    expect(errors[0].code).toEqual('C005');
+    expect(errors[0].message).toEqual(
       'Invalid availability. ISO 8601 time intervals format expected.'
     );
   });
@@ -90,6 +88,6 @@ describe('validator', () => {
     };
     const errors = await SlaValidator.validateDocument(doc);
 
-    expect(errors.length).to.eq(0);
+    expect(errors.length).toEqual(0);
   });
 });

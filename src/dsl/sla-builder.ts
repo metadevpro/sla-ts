@@ -1,6 +1,5 @@
-import * as yaml from 'yaml';
-import * as sla from '../model';
-import { LimitObject, PathObject, PlanObject } from '../model';
+import { stringify as YamlStringify } from 'yaml';
+import * as sla from '../model/sla-document';
 
 export class SlaBuilder {
   static createSlaPlansDocument(
@@ -92,12 +91,12 @@ export class SlaBuilder {
     return JSON.stringify(this.doc, replacer, space);
   }
   getSlaAsYaml(): string {
-    return yaml.stringify(this.doc);
+    return YamlStringify(this.doc);
   }
 }
 
 /** Ensure a plan is created */
-const ensurePlan = (doc: sla.SlaDocument, planName: string): PlanObject => {
+const ensurePlan = (doc: sla.SlaDocument, planName: string): sla.PlanObject => {
   doc.plans = doc.plans || {};
   if (!doc.plans[planName]) {
     doc.plans[planName] = {};
@@ -105,7 +104,7 @@ const ensurePlan = (doc: sla.SlaDocument, planName: string): PlanObject => {
   return doc.plans[planName];
 };
 /** Ensuere a quota path is created */
-const ensureQuotaPath = (plan: PlanObject, path: string): sla.PathObject => {
+const ensureQuotaPath = (plan: sla.PlanObject, path: string): sla.PathObject => {
   plan.quotas = plan.quotas || {};
   if (!plan.quotas[path]) {
     plan.quotas[path] = {};
@@ -114,7 +113,7 @@ const ensureQuotaPath = (plan: PlanObject, path: string): sla.PathObject => {
 };
 
 /** Ensuere a rate path is created */
-const ensureRatePath = (plan: PlanObject, path: string): sla.PathObject => {
+const ensureRatePath = (plan: sla.PlanObject, path: string): sla.PathObject => {
   plan.rates = plan.rates || {};
   if (!plan.rates[path]) {
     plan.rates[path] = {};
@@ -122,7 +121,12 @@ const ensureRatePath = (plan: PlanObject, path: string): sla.PathObject => {
   return plan.rates[path];
 };
 
-const addLimit = (po: PathObject, verb: string, metric: string, limit: LimitObject): void => {
+const addLimit = (
+  po: sla.PathObject,
+  verb: string,
+  metric: string,
+  limit: sla.LimitObject
+): void => {
   let vi = po[verb];
   if (!vi) {
     vi = {};

@@ -21,8 +21,8 @@ export class SlaValidator {
     return await validator.validate();
   }
 
-  static async validateYamlDocument(yaml: string): Promise<ValidationError[]> {
-    const sla = parseYaml(yaml);
+  static async validateYamlDocument(yamlDoc: string): Promise<ValidationError[]> {
+    const sla = parseYaml(yamlDoc);
     const validator = new SlaValidator(sla);
     return await validator.validate();
   }
