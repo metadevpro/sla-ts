@@ -16,6 +16,21 @@ describe('validator', () => {
 
     expect(errors.length).toEqual(0);
   });
+  it('invalid value on type should report correct path on error', async () => {
+    const doc: SlaDocument = {
+      sla: '1.0.0',
+      context: {
+        id: 'a',
+        type: 'invalid'
+      },
+      metrics: {},
+      plans: {}
+    } as unknown as SlaDocument;
+    const errors = await SlaValidator.validateDocument(doc);
+
+    expect(errors.length).toEqual(1);
+    expect(errors[0].path).toEqual('context.type');
+  });
   it('missing sla version', async () => {
     const doc: Partial<SlaDocument> = {
       sla: undefined,

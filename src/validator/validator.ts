@@ -308,7 +308,7 @@ const checkPropertyRequired = (
       severity: 'error',
       code: 'C001',
       message: `Property ${property} is required.`,
-      path: `${path}.${property}`
+      path: `${path}`
     });
   } else if (validValues) {
     if (!validValues.includes(value)) {
@@ -317,7 +317,7 @@ const checkPropertyRequired = (
         severity: 'error',
         code: 'C004',
         message: `Property ${property} must be one of the following values: [${validValuesStr}] but '${value}' was found.`,
-        path: path + property
+        path: path
       });
     }
   }
