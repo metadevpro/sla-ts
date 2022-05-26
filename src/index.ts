@@ -1,4 +1,5 @@
 export { SlaBuilder } from './dsl';
+export { slaToHtml } from './generator/sla-html-generator';
 export {
   BillingFrequency,
   ContextObject,
