@@ -9,7 +9,8 @@ export const documentSla = (cmd: Command): number => {
   try {
     const inputFile = cmd.inputFile || 'file.json';
     const data = readFileSync(inputFile, { encoding: 'utf8' });
-    const isYaml = data.trim().startsWith('sla:');
+    const trimmed = data.trim() || '';
+    const isYaml = trimmed.startsWith('sla:') || trimmed.startsWith('sla4oas:');
     const sla: SlaDocument = isYaml ? parseYaml(data) : JSON.parse(data);
 
     const cssUri = cmd.style !== 'swagger-ui' ? '../css/sla.css' : '../css/swagger-ui.css';

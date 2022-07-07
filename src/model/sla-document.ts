@@ -1,18 +1,20 @@
 /** SLA Document
- * Root for an SLA4OAI description. 1.0.0 Draft
- * Conforms to the schema: https://github.com/isa-group/SLA4OAI-Specification/blob/main/versions/1.0.0-Draft.md
+ * Root for an SLA4OAS description. 1.0.1 Draft
+ * Conforms to the schema: https://github.com/isa-group/SLA4OAI-Specification/blob/main/schemas/1.0.0-Draft.schema.json
  */
 export interface SlaDocument {
-  /** Required. Identifies the version of the SLA4OAI used. */
-  sla: string;
-  /** Required. Identifies the version of the SLA4OAI used. */
+  /** Deprecated. Renamed to sla4oas. */
+  sla?: string;
+  /** Required. Identifies the version of the SLA4OAS used. */
+  sla4oas: string;
+  /** Required. Identifies the version of the SLA4OAS used. */
   context: ContextObject;
   /** Required. A list of metrics to use in the context of the SLA. */
   metrics: { [metricName: string]: MetricObject | UrlReference };
   /** Required when context.type=plans A set of plans to define different service levels per plan */
   plans?: { [planName: string]: PlanObject };
   /** Required when context.type=agreement A set of plans to define different service levels per plan */
-  terms?: PlanObject;
+  plan?: PlanObject;
 }
 
 export interface ContextObject {
@@ -28,6 +30,8 @@ export interface ContextObject {
   validity?: ContractValidity;
   /** Optional Api Keys */
   apikeys?: string[];
+  /** Optional Customer information, data about the entity that consumes the service. This field is required if the context type is agreement. */
+  customer?: string;
 }
 
 export interface ContractValidity {
@@ -56,7 +60,7 @@ export interface MetricObject {
 /** Describes a usage plan for the API with its associate costs, availability and guarantees. */
 export interface PlanObject {
   /** Optional Original plan name (used for agreements)  */
-  plan?: string;
+  name?: string;
   /**	Optional Availability of the service for this plan expressed via time slots using the ISO 8601 time intervals format. */
   availability?: string;
   /** Optional Specific pricing data for this plan. Overrides default pricing data defined before. */

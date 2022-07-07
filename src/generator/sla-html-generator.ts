@@ -155,7 +155,7 @@ const generateMetricForTable = (name: string, metric: MetricObject | UrlReferenc
 };
 
 const generateTerms = (sla: SlaDocument): string => {
-  const terms = sla.terms;
+  const terms = sla.plan;
   const content = terms ? generatePlan('terms', terms) : '';
   const html = `
   <div>

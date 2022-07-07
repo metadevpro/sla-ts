@@ -7,7 +7,7 @@ describe('sla-builder', () => {
     const doc = sut.getSla();
 
     expect(doc).not.toBeNull();
-    expect(doc.sla).toEqual('1.0.0');
+    expect(doc.sla4oas).toEqual('1.0.1');
     expect(doc?.context.id).toEqual('sample1');
     expect(doc?.context.api?.$ref).toEqual('https://acme.com');
     expect(doc?.context.provider).toEqual('Acme Corp.');
@@ -19,14 +19,14 @@ describe('sla-builder', () => {
     const result = sut.getSlaAsJson();
 
     expect(result).toEqual(
-      `{"sla":"1.0.0","context":{"id":"sample1","type":"plans","api":{"$ref":"https://acme.com"},"provider":"Acme Corp."},"metrics":{},"plans":{}}`
+      `{"sla4oas":"1.0.1","context":{"id":"sample1","type":"plans","api":{"$ref":"https://acme.com"},"provider":"Acme Corp."},"metrics":{},"plans":{}}`
     );
   });
   it('should create a minimal SLA Document as yaml', () => {
     const sut = SlaBuilder.createSlaPlansDocument('sample1', 'https://acme.com', 'Acme Corp.');
     const result = sut.getSlaAsYaml();
 
-    expect(result).toEqual(`sla: 1.0.0
+    expect(result).toEqual(`sla4oas: 1.0.1
 context:
   id: sample1
   type: plans

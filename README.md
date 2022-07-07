@@ -63,6 +63,7 @@ See [changelog](changelog.md).
 ## References
 
 - SLA4OAI Spec 1.0.0  https://github.com/isa-group/SLA4OAI-Specification/blob/main/versions/1.0.0-Draft.md
+- SLA4OAI Spec Working Draft https://github.com/isa-group/SLA4OAI-Specification/blob/main/versions/Working-Draft.md
 - OpenAPI spec 3.1.0. https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md
 
 ## License

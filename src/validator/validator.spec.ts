@@ -4,7 +4,7 @@ import { SlaValidator } from '../validator/validator';
 describe('validator', () => {
   it('minimal sla should validate', async () => {
     const doc: SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: 'a',
         type: 'plans'
@@ -18,7 +18,7 @@ describe('validator', () => {
   });
   it('invalid value on type should report correct path on error', async () => {
     const doc: SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: 'a',
         type: 'invalid'
@@ -33,7 +33,7 @@ describe('validator', () => {
   });
   it('missing type should report correct path on error', async () => {
     const doc: SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: 'a',
         xtype: 'invalid'
@@ -48,7 +48,7 @@ describe('validator', () => {
   });
   it('missing sla version', async () => {
     const doc: Partial<SlaDocument> = {
-      sla: undefined,
+      sla4oas: undefined,
       context: {
         id: 'a',
         type: 'plans'
@@ -61,11 +61,11 @@ describe('validator', () => {
 
     expect(errors.length).toEqual(1);
     expect(errors[0].code).toEqual('C001');
-    expect(errors[0].message).toEqual('Property sla is required.');
+    expect(errors[0].message).toEqual('Property sla4oas is required.');
   });
   it('invalid sla version', async () => {
     const doc: SlaDocument = {
-      sla: '-12.0.0',
+      sla4oas: '-12.0.0',
       context: {
         id: 'a',
         type: 'plans'
@@ -82,7 +82,7 @@ describe('validator', () => {
 
   it('should report invalid availability', async () => {
     const doc: SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: 'a',
         type: 'plans'
@@ -104,7 +104,7 @@ describe('validator', () => {
   });
   it('should report valid availability', async () => {
     const doc: SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: 'a',
         type: 'plans'

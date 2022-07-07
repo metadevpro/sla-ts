@@ -11,7 +11,8 @@ export const validateSla = async (cmd: Command): Promise<number> => {
   }
   try {
     const data = readFileSync(cmd.inputFile, { encoding: 'utf8' });
-    const isYaml = data.trim().startsWith('sla:');
+    const trimmed = data.trim() || '';
+    const isYaml = trimmed.startsWith('sla:') || trimmed.startsWith('sla4oas:');
     const sla = isYaml ? parseYaml(data) : JSON.parse(data);
 
     const errors = await SlaValidator.validateDocument(sla);

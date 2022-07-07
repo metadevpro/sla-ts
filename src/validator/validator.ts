@@ -34,9 +34,9 @@ export class SlaValidator {
   async validate(): Promise<ValidationError[]> {
     const errors: ValidationError[] = [];
 
-    this.version = this.doc.sla;
-    checkPropertyRequired(errors, this.doc, 'sla', '');
-    checkSlaVersion(errors, this.doc.sla);
+    this.version = this.doc.sla4oas;
+    checkPropertyRequired(errors, this.doc, 'sla4oas', '');
+    checkSlaVersion(errors, this.doc.sla4oas);
     checkPropertyRequired(errors, this.doc, 'context', '');
     checkPropertyRequired(errors, this.doc, 'metrics', '');
 
@@ -44,8 +44,8 @@ export class SlaValidator {
     checkPropertyDocumentType(errors, this.doc);
 
     checkMetrics(errors, this.doc.metrics);
-    checkPlans(errors, this.doc.plans);
-    // todo: checkTerms
+    checkPlans(errors, this.doc.plans); // if type=plans
+    // todo: plan (if type=agreement)
 
     this.errors = errors;
     return errors;
@@ -323,13 +323,13 @@ const checkPropertyRequired = (
   }
 };
 const checkSlaVersion = (errors: ValidationError[], slaVersion: string): void => {
-  if (slaVersion && !['1.0.0', '1.0', '1'].includes(slaVersion.trim())) {
+  if (slaVersion && !['1.0.1', '1.0', '1'].includes(slaVersion.trim())) {
     errors.push({
       severity: 'error',
       code: 'C002',
       message: 'SLA Version provided is not supported.',
       found: slaVersion,
-      expected: '1.0.0',
+      expected: '1.0.1',
       path: 'api'
     });
   }
@@ -360,16 +360,16 @@ const checkPropertyDocumentType = (errors: ValidationError[], doc: SlaDocument):
         path: '.'
       });
     }
-    if (doc?.terms) {
+    if (doc?.plan) {
       errors.push({
         severity: 'error',
         code: 'C006',
-        message: `Unexpected terms found for type='plans'.`,
+        message: `Unexpected plan found for type='plans'.`,
         path: '.'
       });
     }
   }
-  if (doc?.context?.type === 'agreement' && !doc.terms) {
+  if (doc?.context?.type === 'agreement' && !doc.plan) {
     if (doc?.plans) {
       errors.push({
         severity: 'error',
@@ -378,11 +378,11 @@ const checkPropertyDocumentType = (errors: ValidationError[], doc: SlaDocument):
         path: '.'
       });
     }
-    if (!doc?.terms) {
+    if (!doc?.plan) {
       errors.push({
         severity: 'error',
         code: 'C008',
-        message: `Missing terms for type='agreement'.`,
+        message: `Missing plan for type='agreement'.`,
         path: '.'
       });
     }

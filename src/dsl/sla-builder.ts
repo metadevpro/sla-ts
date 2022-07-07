@@ -12,7 +12,7 @@ export class SlaBuilder {
     const api = apiUrl ? { $ref: apiUrl } : undefined;
 
     const doc: sla.SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: slaId,
         type: 'plans',
@@ -32,12 +32,12 @@ export class SlaBuilder {
     apiUrl?: string,
     provider?: string,
     metrics: { [metricName: string]: sla.MetricObject | sla.UrlReference } = {},
-    terms: sla.PlanObject = {}
+    plan: sla.PlanObject = {}
   ): SlaBuilder {
     const api = apiUrl ? { $ref: apiUrl } : undefined;
 
     const doc: sla.SlaDocument = {
-      sla: '1.0.0',
+      sla4oas: '1.0.1',
       context: {
         id: slaId,
         type: 'agreement',
@@ -45,7 +45,7 @@ export class SlaBuilder {
         provider
       },
       metrics,
-      terms
+      plan
     };
 
     const builder = new SlaBuilder(doc);
